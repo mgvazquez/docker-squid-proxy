@@ -1,0 +1,21 @@
+version: '2'
+
+volumes:
+  squid_cache:
+
+services:
+  squid-proxy:
+    image: mgvazquez/squid-proxy:1.0.0
+    hostname: squid-proxy
+    container_name: squid-proxy
+    net: "host"
+    privileged: true
+    volumes:
+      - squid_cache:/var/cache/squid
+    environment:
+      - MYSQL_ROOT_PASSWORD=toor
+      - MYSQL_ALLOW_EMPTY_PASSWORD=no
+      - MYSQL_RANDOM_ROOT_PASSWORD=no
+      - MYSQL_DATABASE=sso
+      - MYSQL_USER=iwaysso
+      - MYSQL_PASSWORD=5505uck5
