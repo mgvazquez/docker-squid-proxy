@@ -1,4 +1,4 @@
-version: '2'
+puversion: '2'
 
 volumes:
   squid_cache:
