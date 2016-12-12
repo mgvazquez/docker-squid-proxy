@@ -1,3 +1,5 @@
+[![](https://images.microbadger.com/badges/version/mgvazquez/squid-proxy:1.0.0.svg)](https://microbadger.com/images/mgvazquez/squid-proxy:1.0.0 "Get your own version badge on microbadger.com") [![](https://images.microbadger.com/badges/image/mgvazquez/squid-proxy:1.0.0.svg)](https://microbadger.com/images/mgvazquez/squid-proxy:1.0.0 "Get your own image badge on microbadger.com")
+
 # Docker Squid Proxy
 
 This is an Squid-Proxy that act like an 'transparent-proxy' to accelerate the docker-image recontrstuction.
