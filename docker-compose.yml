@@ -1,21 +1,19 @@
-puversion: '2'
+version: '2'
 
 volumes:
   squid_cache:
 
 services:
   squid-proxy:
-    image: mgvazquez/squid-proxy:1.0.0
+    image: mgvazquez/squid-proxy
     hostname: squid-proxy
     container_name: squid-proxy
-    net: "host"
+    network_mode: host
     privileged: true
     volumes:
       - squid_cache:/var/cache/squid
+      - /etc/localtime:/etc/localtime
     environment:
-      - MYSQL_ROOT_PASSWORD=toor
-      - MYSQL_ALLOW_EMPTY_PASSWORD=no
-      - MYSQL_RANDOM_ROOT_PASSWORD=no
-      - MYSQL_DATABASE=sso
-      - MYSQL_USER=iwaysso
-      - MYSQL_PASSWORD=5505uck5
+      - SQUID_LISTEN_PORT=3128
+      - SQUID_MAX_CACHE_SIZE=5000
+      - SQUID_MAX_CACHE_OBJECT=1024
