@@ -4,6 +4,7 @@ MAINTAINER Manuel Andres Garcia Vazquez "<mvazquez@scabb-island.com.ar>"
 
 ARG BUILD_DATE
 ARG VCS_REF
+ARG VERSION
 ARG PYTHON_VERSION
 ARG IPTABLES_VERSION
 ARG SQUID_VERSION
@@ -12,7 +13,7 @@ ARG DUMB_INIT
 LABEL org.label-schema.build-date=$BUILD_DATE \
       org.label-schema.vcs-url="https://github.com/mgvazquez/docker-squid-proxy.git" \
       org.label-schema.vcs-ref=$VCS_REF \
-      org.label-schema.schema-version="1.0.0"
+      org.label-schema.version=$VERSION
 
 ENV PYTHON_VERSION=${PYTHON_VERSION:-2.7.12-r0}
 ENV IPTABLES_VERSION=${IPTABLES_VERSION:-1.6.0-r0}
