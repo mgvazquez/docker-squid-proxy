@@ -11,20 +11,20 @@ squid_listen_port = os.getenv("SQUID_LISTEN_PORT", '3128')
 squid_max_cache_size = os.getenv("SQUID_MAX_CACHE_SIZE", '5000')
 squid_max_cache_object = os.getenv("SQUID_MAX_CACHE_OBJECT", '1024')
 
-squid_cache = "squid -z"
-squid_run = "squid -N"
+squid_cache = 'squid -z'
+squid_run = 'squid -N'
+squid_stop = 'squid -k shutdown'
 
 iptables_add_redirect = "iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to " + squid_listen_port + " -w"
 iptables_rm_redirect = iptables_add_redirect.replace(' -A ', ' -D ')
 
-
-
 class SquidContext:
     def __enter__(self):
-        print("Starting Squid")
         try:
-            # subprocess.check_call(iptables_add_redirect.split())
-            self.squid_process = subprocess.Popen(squid_run, shell=True)
+            print("Starting Squid")
+            self.squid_cache_proc = subprocess.check_call(squid_cache, shell=True)
+            self.squid_proc = subprocess.Popen(squid_run, shell=True)
+            self.iptables_add_proc = subprocess.check_call(iptables_add_redirect.split())
             self.setup = True
         except:
             print("Starting Squid: FAIL")
@@ -34,8 +34,11 @@ class SquidContext:
     def __exit__(self, type, value, traceback):
         if self.setup:
             print("Stopping Squid")
-            self.squid_process.kill
-            # subprocess.check_call(iptables_rm_redirect.split())
+            print self.iptables_add_proc
+            if self.iptables_add_proc == 0:
+                subprocess.check_call(iptables_rm_redirect.split())
+            subprocess.check_call(squid_stop, shell=True)
+            time.sleep(1)
 
 def is_port_open(port_num):
     """ Detect if a port is open on localhost"""
@@ -63,86 +66,18 @@ def main():
         print("SIGTERM caught, shutting down.")
         status["shutting_down"] = True
 
+    print
 
     with SquidContext() as squid:
-        # Wait for the squid instance to end or a ctrl-c
-        # signal.signal(signal.SIGTERM, graceful_shutdown)
+        signal.signal(signal.SIGTERM, graceful_shutdown)
         try:
-            while True:
+            time.sleep(5)
+            while is_port_open(int(squid_listen_port)) and status["shutting_down"] is False:
                 time.sleep(1)
-            # while is_port_open(int(squid_listen_port)) and status["shutting_down"] is False:
-            #     time.sleep(1)
         except KeyboardInterrupt as ex:
-            # Catch Ctrl-C and pass it into the squid instance
             print("CTRL-C caught, shutting down.")
         except Exception as ex:
             print("Caught exception, %s, shutting down" % ex)
-
-
-
-
-
-
-
-
-
-
-
-
-    # while not is_port_open(int(squid_listen_port)):
-    #     print("Waiting for Squid port (%s/tcp) to open..." % squid_listen_port)
-    #     time.sleep(1)
-
-
-
-
-
-
-
-
-    # if is_port_open(squid_listen_port):
-    #
-    #
-    #
-    #
-    #
-    #
-    # else:
-    #     print("Port %s never opened, squid instance"
-    #           " must have terminated prematurely" % squid_listen_port)
-    # return 0
-
-
-
-
-    # subprocess.check_call(squid_cache, shell=True)
-    #
-    # time.sleep(2)
-    #
-    #
-    # squid_p = subprocess.Popen(squid_run, shell=True)
-    # print squid_p.__dict__
-    # print squid_p.poll()
-    #
-    # while squid_p.poll() is None:
-    #     signal.signal(signal.SIGTERM, graceful_shutdown)
-    #     time.sleep(1)
-
-
-
-    # with RedirectContext():
-    #     # Wait for the squid instance to end or a ctrl-c
-    #     signal.signal(signal.SIGTERM, graceful_shutdown)
-    #     try:
-    #         while is_port_open(int(squid_listen_port)) and status["shutting_down"] is False:
-    #             time.sleep(1)
-    #     except KeyboardInterrupt as ex:
-    #         # Catch Ctrl-C and pass it into the squid instance
-    #         print("CTRL-C caught, shutting down.")
-    #     except Exception as ex:
-    #         print("Caught exception, %s, shutting down" % ex)
-
-
 
 if __name__ == '__main__':
     sys.exit(main())
