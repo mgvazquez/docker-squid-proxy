@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-if [[ ${DOCKER_TAG} != 'master' ]]; then
+if [[ ${DOCKER_TAG} == 'latest' ]]; then
     exit 0
 fi
 # Parse image name for repo name
