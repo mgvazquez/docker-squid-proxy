@@ -14,7 +14,7 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
       org.label-schema.vcs-url="https://github.com/mgvazquez/docker-squid-proxy.git" \
       org.label-schema.vcs-ref=$BUILD_VCS_REF \
       org.label-schema.version=$BUILD_VERSION \
-      com.microscaling.license=Apache-2.0
+      com.microscaling.license=GPL-3.0
 
 ENV PYTHON_VERSION=${PYTHON_VERSION:-2.7.12-r0}
 ENV IPTABLES_VERSION=${IPTABLES_VERSION:-1.6.0-r0}
@@ -39,6 +39,7 @@ RUN echo -e "\
 http://dl-4.alpinelinux.org/alpine/latest-stable/main\n\
 @testing http://dl-4.alpinelinux.org/alpine/edge/testing" > /etc/apk/repositories &&\
     apk add --update \
+      sudo \
       iptables=${IPTABLES_VERSION} \
       squid=${SQUID_VERSION} \
       python=${PYTHON_VERSION}
@@ -51,9 +52,11 @@ RUN rm -rf /var/cache/apk/* &&\
     mkdir -p /etc/squid/squid.d &&\
     chmod 777 /etc/squid/squid.d &&\
     chmod a+x /bin/dumb-init &&\
-    chmod a+x /bin/squid.py
+    chmod a+x /bin/squid.py && \
+    echo -e "Defaults:squid !requiretty" > /etc/sudoers.d/squid &&\
+    echo -e "squid ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/squid
 
-# USER squid
+USER squid
 
-ENTRYPOINT ["/bin/dumb-init"]
+ENTRYPOINT ["sudo", "/bin/dumb-init"]
 CMD ["/bin/squid.py"]
