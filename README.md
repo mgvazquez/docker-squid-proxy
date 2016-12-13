@@ -1,4 +1,4 @@
-[![](https://images.microbadger.com/badges/version/mgvazquez/squid-proxy:1.0.0.svg)](https://microbadger.com/images/mgvazquez/squid-proxy:1.0.0 "Get your own version badge on microbadger.com") [![](https://images.microbadger.com/badges/image/mgvazquez/squid-proxy:1.0.0.svg)](https://microbadger.com/images/mgvazquez/squid-proxy:1.0.0 "Get your own image badge on microbadger.com")
+[![](https://images.microbadger.com/badges/version/mgvazquez/squid-proxy.svg)](https://microbadger.com/images/mgvazquez/squid-proxy "Get your own version badge on microbadger.com") [![](https://images.microbadger.com/badges/image/mgvazquez/squid-proxy.svg)](https://microbadger.com/images/mgvazquez/squid-proxy "Get your own image badge on microbadger.com") [![](https://images.microbadger.com/badges/commit/mgvazquez/squid-proxy.svg)](https://microbadger.com/images/mgvazquez/squid-proxy "Get your own commit badge on microbadger.com")
 
 # Docker Squid Proxy
 
