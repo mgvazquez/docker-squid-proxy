@@ -1,5 +1,3 @@
-[![](https://images.microbadger.com/badges/version/mgvazquez/squid-proxy.svg)](https://microbadger.com/images/mgvazquez/squid-proxy "Get your own version badge on microbadger.com") [![](https://images.microbadger.com/badges/image/mgvazquez/squid-proxy.svg)](https://microbadger.com/images/mgvazquez/squid-proxy "Get your own image badge on microbadger.com") [![](https://images.microbadger.com/badges/commit/mgvazquez/squid-proxy.svg)](https://microbadger.com/images/mgvazquez/squid-proxy "Get your own commit badge on microbadger.com")
-
 # Docker Squid Proxy
 
 This is an Squid-Proxy that act like an 'transparent-proxy' to accelerate the docker-image recontrstuction.
@@ -8,10 +6,16 @@ This solution are based on [squid-in-a-can](https://github.com/jpetazzo/squid-in
 
 ---
 
+* [Docker Image](#docker-image)
 * [Requirements](#requirements)
 * [Limitations](#limitations)
 * [How-to](#how-to)
 * [To-Do](#to-do)
+
+---
+### Docker Image
+
+[![](https://images.microbadger.com/badges/version/mgvazquez/squid-proxy.svg)](https://microbadger.com/images/mgvazquez/squid-proxy "Get your own version badge on microbadger.com") [![](https://images.microbadger.com/badges/image/mgvazquez/squid-proxy.svg)](https://microbadger.com/images/mgvazquez/squid-proxy "Get your own image badge on microbadger.com") [![](https://images.microbadger.com/badges/commit/mgvazquez/squid-proxy.svg)](https://microbadger.com/images/mgvazquez/squid-proxy "Get your own commit badge on microbadger.com") [![](https://images.microbadger.com/badges/license/mgvazquez/squid-proxy.svg)](https://microbadger.com/images/mgvazquez/squid-proxy "Get your own license badge on microbadger.com")
 
 ---
 
@@ -91,4 +95,3 @@ The squid disk cache size can be tuned. Use `-e SQUID_MAX_CACHE_SIZE=5000` to se
 
 ### To-Do
 * To handle [HTTPS](http://wiki.squid-cache.org/Features/HTTPS) requests with custom trusted certificates.
-* Send Squid Logs (access and error) to stdout.
