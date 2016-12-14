@@ -24,7 +24,6 @@ This solution are based on [squid-in-a-can](https://github.com/jpetazzo/squid-in
 * `docker-compose` >= 1.8.1
 * `docker run` need `--privileged` and `--network host` flag.
 
-
 ---
 
 ### Limitations
