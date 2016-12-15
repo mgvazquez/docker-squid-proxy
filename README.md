@@ -94,3 +94,7 @@ The squid disk cache size can be tuned. Use `-e SQUID_MAX_CACHE_SIZE=5000` to se
 
 ### To-Do
 * To handle [HTTPS](http://wiki.squid-cache.org/Features/HTTPS) requests with custom trusted certificates.
+
+---
+
+<p align="center"><img src="http://www.catb.org/hacker-emblem/glider.png" alt="hacker emblem"></p>
