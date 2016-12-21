@@ -1,6 +1,6 @@
 # Docker Squid Proxy
 
-This is an Squid-Proxy that act like an 'transparent-proxy' to accelerate the docker-image recontrstuction.
+This is an Squid-Proxy that act like an 'transparent-proxy' to accelerate the docker-image reconstruction.
 
 This solution are based on [squid-in-a-can](https://github.com/jpetazzo/squid-in-a-can) project, developed by &copy;[Jérôme Petazzoni](https://github.com/jpetazzo).
 
