@@ -66,8 +66,6 @@ def main():
         print("SIGTERM caught, shutting down.")
         status["shutting_down"] = True
 
-    print
-
     with SquidContext() as squid:
         signal.signal(signal.SIGTERM, graceful_shutdown)
         try:

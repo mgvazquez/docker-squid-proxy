@@ -1,8 +1,8 @@
 # Docker Squid Proxy
 
-This is an Squid-Proxy that act like an 'transparent-proxy' to accelerate the docker-image recontrstuction.
+This is an Squid-Proxy that acts as a 'transparent-proxy' to accelerate the docker-image reconstruction.
 
-This solution are based on [squid-in-a-can](https://github.com/jpetazzo/squid-in-a-can) project, developed by &copy;[Jérôme Petazzoni](https://github.com/jpetazzo).
+This solution is based on [squid-in-a-can](https://github.com/jpetazzo/squid-in-a-can) project, developed by &copy;[Jérôme Petazzoni](https://github.com/jpetazzo).
 
 ---
 
@@ -44,8 +44,7 @@ docker run -d --privileged --network host mgvazquez/squid-proxy
 #### Run via docker-compose
 
 There is a `docker-compose.yml` file to enable launching via [docker compose](https://docs.docker.com/compose/).
-To use this you will need a
-local checkout of this repo and have `docker` and `compose` installed.
+To use this you will need a local checkout of this repo and have `docker` and `compose` installed.
 
 > Run the following command in the same directory as the `docker-compose.yml` file:
 
